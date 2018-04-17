@@ -1,0 +1,36 @@
+
+<div class="container-fluid">
+  <h1>
+    Branch Services Information  <a routerLink=""> Back </a>
+  </h1>
+
+<table class="table">
+
+  <thead class="thead-dark">
+  <td>
+    NAME
+  </td>
+  <td>
+    QUEUE TYPE
+  </td>
+  <td>
+    CUSTOMERS WAITING
+  </td>
+
+  </thead>
+  <tr *ngFor="let branchServiceInfos of branchServiceInfos; let i = index">
+    <td>
+      {{ branchServiceInfos.name }}
+    </td>
+    <td>
+      {{ branchServiceInfos.queueType}}
+    </td>
+    <td>
+      {{ branchServiceInfos.customersWaiting }}
+    </td>
+
+
+  </tr>
+</table>
+
+</div>

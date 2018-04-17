@@ -1,0 +1,76 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid">
+  <h1>
+    Branch Information
+  </h1>
+
+  <div id="queuesContainer" class="moduleContentContainer">
+    <div id="queues_wrapper" class="dataTables_wrapper" role="grid">
+      <table id="queues">
+ggh
+      </table>
+    </div>
+  </div>
+
+
+
+
+  <table class="table">
+
+    <thead class="thead-dark">
+    <td>
+      ID
+    </td>
+    <td>
+      NAME
+    </td>
+    <td>
+      CUSTOMERS BEING SERVED
+    </td>
+    <td>
+      CUSTOMERS WAITING
+    </td>
+    <td>
+      MAX WAITING TIME
+    </td>
+    <td>
+      OPEN SERVICE POINTS
+    </td>
+    <td>
+      AVERAGE WAITING TIME
+    </td>
+    <td>
+      TOTAL WAITING TIME
+    </td>
+    </thead>
+    <tr *ngFor="let branchInfo of branchInfos; let i = index">
+      <td>
+        {{ branchInfo.id }}
+      </td>
+      <td>
+        <a routerLink="{{branchInfo.id}}"> {{ branchInfo.name }} </a>
+      </td>
+      <td>
+        {{ branchInfo.customersBeingServed}}
+      </td>
+      <td>
+        {{ branchInfo.customersWaiting }}
+      </td>
+      <td>
+        {{ branchInfo.maxWaitingTime}}
+      </td>
+      <td>
+        {{ branchInfo.openServicePoints}}
+      </td>
+      <td>
+        {{ branchInfo.averageWaitingTime}}
+      </td>
+      <td>
+        {{ branchInfo.totalWaitingTime}}
+      </td>
+
+    </tr>
+  </table>
+
+
+  <router-outlet></router-outlet>
