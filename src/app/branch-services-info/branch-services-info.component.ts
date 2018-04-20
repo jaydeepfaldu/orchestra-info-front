@@ -2,9 +2,11 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from '../../../node_modules/rxjs';
 import {OrchestraMIEndpointService} from '../OrchestraMIEndpointService.service';
 import {BranchServiceInfoEntity} from '../entity/branch-service-info.entity';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
+
+declare var qevents: any;
 
 
 @Component({
@@ -19,8 +21,8 @@ export class BranchServicesInfoComponent implements OnInit, OnDestroy {
   public branchServiceInfos: BranchServiceInfoEntity[];
   public subscription: Subscription;
 
-  constructor(private  orch: OrchestraMIEndpointService, private route: ActivatedRoute) { }
-
+  constructor(private  orch: OrchestraMIEndpointService, private route: ActivatedRoute) {
+  }
 
 
   ngOnInit() {
@@ -28,6 +30,15 @@ export class BranchServicesInfoComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       this.branchId = params.branchId;
       console.log(this.branchId);
+
+      qevents.init(false, data => {
+        console.log('Connection status fallback executed', data);
+      });
+      qevents.subscribe('**', (data) => {
+        console.log(data);
+      });
+
+
     });
 
 
@@ -44,11 +55,10 @@ export class BranchServicesInfoComponent implements OnInit, OnDestroy {
 
   refreshServices() {
     this.orch.getBranchesService(this.branchId).then(branchServiceInfos => {
-    console.log(branchServiceInfos);
-    this.branchServiceInfos = branchServiceInfos;
-  });
+      console.log(branchServiceInfos);
+      this.branchServiceInfos = branchServiceInfos;
+    });
   }
-
 
 
 }
